@@ -14,6 +14,7 @@ Animation::Animation(QString fileName, QObject *parent) : QObject(parent)
 
 QImage Animation::getFrame(int position)
 {
+
     return Animation::frames[position]->GetImage();
 }
 
