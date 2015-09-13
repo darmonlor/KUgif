@@ -7,8 +7,8 @@
 #include <QStandardPaths>
 #include <QImageReader>
 #include <QPixmap>
-#include "frame.h"
-#include "animation.h"
+#include "lib/frame.h"
+#include "lib/animation.h"
 namespace Ui {
 class MainWindow;
 }
@@ -37,7 +37,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Animation* animation;
+    Animation *animationSource, *animationTarget;
+
 
 };
 

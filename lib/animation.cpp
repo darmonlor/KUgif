@@ -12,6 +12,11 @@ Animation::Animation(QString fileName, QObject *parent) : QObject(parent)
     }
 }
 
+Animation::Animation(QObject *parent) :QObject(parent)
+{
+
+}
+
 QImage Animation::getFrame(int position)
 {
 

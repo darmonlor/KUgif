@@ -12,6 +12,8 @@ private:
 
 public:
     explicit Animation(QString fileName, QObject *parent = 0);
+    explicit Animation(QObject *parent = 0);
+
     QImage getFrame(int position);
     void Draw(QLabel *label, int position = 0);
     int framesCount();
