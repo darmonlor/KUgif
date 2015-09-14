@@ -3,16 +3,15 @@
 Animation::Animation(QString fileName, QObject *parent) : QObject(parent)
 {
     QImageReader reader(fileName);
-    for (int i=0;i<=reader.imageCount();i++)
-    {
+    for (int i = 0; i <= reader.imageCount(); i++) {
         reader.jumpToImage(i);
         //framesFrom.append(reader->read());
         Animation::frames.append(new Frame(this));
-        Animation::frames[i]->FrameFill(reader.read(),reader.nextImageDelay());
+        Animation::frames[i]->FrameFill(reader.read(), reader.nextImageDelay());
     }
 }
 
-Animation::Animation(QObject *parent) :QObject(parent)
+Animation::Animation(QObject *parent) : QObject(parent)
 {
 
 }

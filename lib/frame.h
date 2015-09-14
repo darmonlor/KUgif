@@ -13,7 +13,7 @@ private:
 
 public:
     explicit Frame(QObject *parent = 0);
-    void FrameFill(QImage image,int delay);
+    void FrameFill(QImage image, int delay);
     void SetFrame(QImage image);
     void SetDelay(int delay);
     QImage GetImage();

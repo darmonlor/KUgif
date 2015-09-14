@@ -8,7 +8,7 @@ class Animation : public QObject
 {
     Q_OBJECT
 private:
-    QVector<Frame*> frames ;
+    QVector<Frame *> frames ;
 
 public:
     explicit Animation(QString fileName, QObject *parent = 0);
