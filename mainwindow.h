@@ -6,9 +6,8 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QImageReader>
-#include <QPixmap>
-#include "lib/frame.h"
 #include "lib/animation.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -34,6 +33,8 @@ private slots:
     void on_actionSave_As_triggered();
 
     void on_delayBox_valueChanged(int arg1);
+
+    void on_frameAddButton_clicked();
 
 private:
     Ui::MainWindow *ui;

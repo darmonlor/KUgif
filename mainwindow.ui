@@ -70,34 +70,54 @@
         <string>Tools</string>
        </property>
        <widget class="QWidget" name="dockWidgetContents_2">
-        <layout class="QFormLayout" name="formLayout">
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_3">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QPushButton" name="animationFillButton">
            <property name="text">
-            <string>Delay:</string>
+            <string>Fill animation</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
+         <item>
+          <widget class="QPushButton" name="frameAddButton">
+           <property name="text">
+            <string>Add frame</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="frameRemoveButton">
            <property name="text">
             <string>Remove frame</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Delay:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QSpinBox" name="delayBox">
            <property name="maximum">
             <number>1000000000</number>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QPushButton" name="pushButton">
-           <property name="text">
-            <string>PushButton</string>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-          </widget>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>

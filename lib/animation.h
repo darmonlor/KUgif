@@ -1,30 +1,31 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
+
 #include <QObject>
 #include "frame.h"
-#include <QImageReader>
 
-class Animation : public QObject
+class Animation
 {
-    Q_OBJECT
 private:
     QVector<Frame *> frames ;
 
 public:
-    explicit Animation(QString fileName, QObject *parent = 0);
-    explicit Animation(QObject *parent = 0);
+    explicit Animation(QString fileName);
+    explicit Animation();
 
-    QImage getFrame(int position);
+    QImage getFrameImage(int position);
     void Draw(QLabel *label, int position = 0);
     int framesCount();
     int getFrameDelay(int position);
+    Frame* getFrame(int position);
     void setFrameDelay(int position, int delay);
     void deleteFrame(int position);
+    void addFrame(int position, Frame frame);
 
 
-signals:
+    // QObject interface
+protected:
 
-public slots:
 };
 
 #endif // ANIMATION_H
