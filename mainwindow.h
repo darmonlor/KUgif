@@ -7,7 +7,7 @@
 #include <QStandardPaths>
 #include <QImageReader>
 #include "lib/animation.h"
-
+#include "lib/animationsource.h"
 namespace Ui {
 class MainWindow;
 }
@@ -34,9 +34,13 @@ private slots:
 
     void on_frameAddButton_clicked();
 
+    void on_sourceList_currentRowChanged(int currentRow);
+
 private:
     Ui::MainWindow *ui;
-    Animation *animationSource, *animationTarget;
+    QVector<AnimationSource*>animationSource;
+    AnimationSource* activeSource;
+    Animation *animationTarget;
 
 
 };

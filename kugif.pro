@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     lib/frame.cpp \
     lib/animation.cpp \
-    test.cpp
+    test.cpp \
+    lib/animationsource.cpp
 
 HEADERS  += mainwindow.h \
     lib/frame.h \
     lib/animation.h \
-    test.h
+    test.h \
+    lib/animationsource.h
 
 FORMS    += mainwindow.ui
