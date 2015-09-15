@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     lib/frame.cpp \
-    lib/animation.cpp
+    lib/animation.cpp \
+    test.cpp
 
 HEADERS  += mainwindow.h \
     lib/frame.h \
-    lib/animation.h
+    lib/animation.h \
+    test.h
 
 FORMS    += mainwindow.ui

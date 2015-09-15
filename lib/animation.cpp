@@ -3,8 +3,12 @@
 
 #include "animation.h"
 
-Animation::Animation(QString fileName)
+Animation::Animation(QString fileName,QLabel *label, QLabel *positionLabel,QSlider *slider,QObject *parent) : QObject( parent)
 {
+    Animation::slider=slider;
+    Animation::label=label;
+    Animation::positionLabel=positionLabel;
+    connect(Animation::slider,SIGNAL(valueChanged(int)),this,SLOT(redraw(int)));
     qDebug() << fileName;
     QImageReader reader(fileName);
     for (int i = 0; i <= reader.imageCount(); i++) {
@@ -15,7 +19,15 @@ Animation::Animation(QString fileName)
     }
 }
 
-Animation::Animation()
+Animation::Animation(QLabel *label, QLabel *positionLabel, QSlider *slider,QObject *parent) : QObject( parent)
+{
+    Animation::slider=slider;
+    Animation::label=label;
+    Animation::positionLabel=positionLabel;
+    connect(Animation::slider,SIGNAL(valueChanged(int)),this,SLOT(redraw(int)));
+}
+
+Animation::Animation(QObject *parent) : QObject( parent)
 {
 
 }
@@ -23,12 +35,13 @@ Animation::Animation()
 QImage Animation::getFrameImage(int position)
 {
 
+
     return Animation::frames[position]->GetImage();
 }
 
-void Animation::Draw(QLabel *label, int position)
+void Animation::Draw(int position)
 {
-    label->setPixmap(QPixmap::fromImage(frames[position]->GetImage()));
+    Animation::label->setPixmap(QPixmap::fromImage(frames[position]->GetImage()));
 }
 
 int Animation::framesCount()
@@ -56,7 +69,21 @@ void Animation::deleteFrame(int position)
     Animation::frames.remove(position);
 }
 
-void Animation::addFrame(int position, Frame frame)
+void Animation::addFrame(Frame *frame, int position)
 {
-    Animation::frames.append(new Frame());
+    Animation::frames.append(frame);
+}
+
+void Animation::addFrame(Frame *frame)
+{
+    Animation::frames.append(frame);
+}
+
+void Animation::redraw(int position)
+{
+qDebug() <<"scroll"<<position;
+Draw(position);
+//ui->delayBox->setValue(animationSource->getFrameDelay(value));
+Animation::positionLabel->setText(QString("%1 : %2").arg(QString::number(position + 1),
+                                              QString::number(framesCount() - 1)));
 }
