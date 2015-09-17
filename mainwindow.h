@@ -36,6 +36,8 @@ private slots:
 
     void on_sourceList_currentRowChanged(int currentRow);
 
+    void on_toolButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QVector<AnimationSource*>animationSource;

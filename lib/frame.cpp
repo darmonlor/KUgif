@@ -6,7 +6,7 @@ Frame::Frame()
 
 }
 
-void Frame::FrameFill(QImage image, int delay)
+Frame::Frame(QImage image, int delay)
 {
     Frame::image = image;
     Frame::delay = delay;

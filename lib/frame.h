@@ -2,8 +2,7 @@
 #define FRAME_H
 #include <QObject>
 #include <QImage>
-#include <QLabel>
-
+class QImage;
 
 class Frame
 {
@@ -13,7 +12,7 @@ private:
 
 public:
     explicit Frame();
-    void FrameFill(QImage image, int delay);
+    explicit Frame(QImage image, int delay);
     void SetFrame(QImage image);
     void SetDelay(int delay);
     QImage GetImage();

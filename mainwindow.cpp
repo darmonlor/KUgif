@@ -35,8 +35,6 @@ void MainWindow::on_actionOpen_triggered()
         ui->horizontalSlider->setMaximum(activeSource->framesCount() - 2);
         activeSource->Draw();
         connect(ui->sourceList,SIGNAL(currentRowChanged(int)),activeSource,SLOT(activeChanged(int)));
-        ui->timeLabel->setText(QString("%1 : %2").arg(QString::number(ui->horizontalSlider->value() + 1),
-                                                      QString::number(activeSource->framesCount() - 1)));
         new QListWidgetItem(fileName, ui->sourceList);
     }
 
@@ -55,7 +53,7 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
 void MainWindow::on_frameRemoveButton_clicked()
 {
     activeSource->deleteFrame(ui->horizontalSlider_2->value());
-    ui->horizontalSlider_2->setMaximum(activeSource->framesCount() - 2);
+    ui->horizontalSlider_2->setMaximum(activeSource->framesCount() - 1);
     ui->timeLabel_2->setText(QString("%1 : %2").arg(QString::number(ui->horizontalSlider_2->value()),
                                                     QString::number(activeSource->framesCount() - 1)));
     activeSource->Draw(ui->horizontalSlider_2->value());
@@ -74,12 +72,18 @@ void MainWindow::on_delayBox_valueChanged(int arg1)
 
 void MainWindow::on_frameAddButton_clicked()
 {
-qDebug()<<"Adding frame: "<<ui->horizontalSlider->value();
-animationTarget->addFrame(activeSource->getFrame(ui->horizontalSlider->value()));
-animationTarget->redraw(0);
+
 }
 
 void MainWindow::on_sourceList_currentRowChanged(int currentRow)
 {
 activeSource=animationSource[currentRow];
+}
+
+void MainWindow::on_toolButton_2_clicked()
+{
+    qDebug()<<"Adding frame: "<<ui->horizontalSlider->value();
+    animationTarget->addFrame(activeSource->getFrame(ui->horizontalSlider->value()));
+    activeSource->moved(activeSource->getPos()+1);
+
 }

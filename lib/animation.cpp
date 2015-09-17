@@ -1,7 +1,9 @@
 #include <QImageReader>
 #include <QtDebug>
-
+#include "frame.h"
 #include "animation.h"
+#include <QSlider>
+#include <QLabel>
 
 Animation::Animation(QString fileName, QLabel *label, QLabel *positionLabel, QSlider *slider,
                      QObject *parent) : QObject( parent)
@@ -9,15 +11,15 @@ Animation::Animation(QString fileName, QLabel *label, QLabel *positionLabel, QSl
     Animation::slider = slider;
     Animation::label = label;
     Animation::positionLabel = positionLabel;
-    connect(Animation::slider, SIGNAL(valueChanged(int)), this, SLOT(redraw(int)));
+    connect(Animation::slider, SIGNAL(valueChanged(int)), this, SLOT(moved(int)));
     qDebug() << fileName;
     QImageReader reader(fileName);
     for (int i = 0; i <= reader.imageCount()-1; i++) {
         reader.jumpToImage(i);
-        Animation::frames.append(new Frame());
         int delay = reader.nextImageDelay();
-        Animation::frames[i]->FrameFill(reader.read(), delay);
+        Animation::frames.append(new Frame(reader.read(), delay));
     }
+
 }
 
 Animation::Animation(QLabel *label, QLabel *positionLabel, QSlider *slider,
@@ -26,7 +28,7 @@ Animation::Animation(QLabel *label, QLabel *positionLabel, QSlider *slider,
     Animation::slider = slider;
     Animation::label = label;
     Animation::positionLabel = positionLabel;
-    connect(Animation::slider, SIGNAL(valueChanged(int)), this, SLOT(redraw(int)));
+    connect(Animation::slider, SIGNAL(valueChanged(int)), this, SLOT(moved(int)));
 }
 
 Animation::Animation(QObject *parent) : QObject( parent)
@@ -45,6 +47,10 @@ void Animation::Draw(int position)
 {
     Animation::label->setPixmap(QPixmap::fromImage(frames[position]->GetImage()));
     qDebug()<<"Drawing: "<<position;
+}
+
+void Animation::nextFrame()
+{
 }
 
 int Animation::framesCount()
@@ -69,26 +75,47 @@ void Animation::setFrameDelay(int position, int delay)
 
 void Animation::deleteFrame(int position)
 {
-    Animation::frames.remove(position);
+    Animation::frames.removeAt(position);
 }
 
 void Animation::addFrame(Frame *frame, int position)
 {
-    Animation::frames.append(frame);
+    Animation::frames.insert(position,frame);
 }
 
 void Animation::addFrame(Frame *frame)
 {
-    Animation::frames.append(frame);
+    if (Animation::framesCount()==0)
+    {
+        qDebug()<<"Inserting"<<(Animation::slider->value());
+        Animation::frames.insert(Animation::slider->value(),frame);
+        Animation::moved(Animation::slider->value());
+    } else {
+        qDebug()<<"Inserting"<<Animation::slider->value()+1;
+        Animation::frames.insert(Animation::slider->value()+1,frame);
+        Animation::moved(Animation::slider->value()+1);
+    }
+
+    qDebug()<<"Added frame, new framenumber: "<<Animation::framesCount();
+
+
 }
 
-void Animation::redraw(int position)
+void Animation::moved(int position)
 {
-    qDebug() << "scroll" << position;
-    Draw(position);
+//    qDebug()<<"position var: "<<position<<" slider: "<<slider->value()<<"name: "<<slider->objectName();
+    qDebug() << "Settingup counter: " << framesCount();
 //ui->delayBox->setValue(animationSource->getFrameDelay(value));
     Animation::positionLabel->setText(QString("%1 : %2").arg(QString::number(position + 1),
-                                                             QString::number(framesCount() - 1)));
-    Animation::slider->setValue(position);
+                                                             QString::number(framesCount())));
     Animation::slider->setMaximum(Animation::framesCount()-1);
+    Animation::slider->setValue(position);
+    Draw(position);
+    pos=position;
+
+}
+
+int Animation::getPos() const
+{
+    return pos;
 }

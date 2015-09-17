@@ -1,9 +1,11 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
-#include <QSlider>
-#include <QObject>
 
-#include "frame.h"
+#include<QObject>
+class QLabel;
+class QSlider;
+class Frame;
+
 
 class Animation: public QObject
 {
@@ -27,17 +29,21 @@ public:
     void addFrame(Frame *frame, int position);
     void addFrame(Frame *frame);
     void Draw(int position = 0);
+    void nextFrame();
+
+    int getPos() const;
 
 public slots:
-    void redraw(int position);
+    void moved(int position);
 
     // QObject interface
 protected:
 
-    QVector<Frame *> frames ;
+    QList<Frame *> frames ;
     QSlider *slider;
     QLabel *label;
     QLabel *positionLabel;
+    int pos;
 
 };
 
