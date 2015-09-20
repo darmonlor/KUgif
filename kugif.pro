@@ -26,3 +26,6 @@ HEADERS  += mainwindow.h \
     lib/animationsource.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    icons.qrc

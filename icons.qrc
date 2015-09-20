@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/arrow-right-double.svg</file>
+        <file>icons/arrow-right.svg</file>
+        <file>icons/document-open.svg</file>
+        <file>icons/document-save-as.svg</file>
+        <file>icons/edit-delete.svg</file>
+    </qresource>
+</RCC>

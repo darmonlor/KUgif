@@ -409,8 +409,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset theme="document-open">
-     <normaloff/>
-    </iconset>
+     <normaloff>icons/document-open.svg</normaloff>icons/document-open.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Open</string>
