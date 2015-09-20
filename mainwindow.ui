@@ -230,7 +230,7 @@
           <item>
            <widget class="QToolButton" name="toolButton_2">
             <property name="text">
-             <string>...</string>
+             <string>↦</string>
             </property>
             <property name="icon">
              <iconset theme="arrow-right">
@@ -242,7 +242,7 @@
           <item>
            <widget class="QToolButton" name="toolButton">
             <property name="text">
-             <string>...</string>
+             <string>⤅</string>
             </property>
             <property name="icon">
              <iconset theme="arrow-right-double">
@@ -254,7 +254,7 @@
           <item>
            <widget class="QToolButton" name="toolButton_3">
             <property name="text">
-             <string>...</string>
+             <string>✘</string>
             </property>
             <property name="icon">
              <iconset theme="edit-delete">
