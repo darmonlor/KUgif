@@ -84,6 +84,11 @@ void MainWindow::on_toolButton_2_clicked()
 {
     qDebug()<<"Adding frame: "<<ui->horizontalSlider->value();
     animationTarget->addFrame(activeSource->getFrame(ui->horizontalSlider->value()));
-    activeSource->moved(activeSource->getPos()+1);
+    activeSource->nextFrame();
+
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
 
 }

@@ -29,7 +29,11 @@ AnimationSource::AnimationSource(QString fileName, QLabel *label, QLabel *positi
         int delay = reader.nextImageDelay();
         AnimationSource::frames.append(new Frame(reader.read(), delay));
     }
+    pos=0;
+    qDebug()<<"initialized position: "<<pos;
+
     AnimationSource::moved(pos);
+
 }
 
 AnimationSource::AnimationSource(QLabel *label, QLabel *positionLabel, QSlider *slider,

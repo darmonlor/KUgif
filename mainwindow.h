@@ -38,6 +38,8 @@ private slots:
 
     void on_toolButton_2_clicked();
 
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     QVector<AnimationSource*>animationSource;
